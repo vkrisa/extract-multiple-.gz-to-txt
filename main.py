@@ -11,7 +11,8 @@ args = parser.parse_args()
 
 def collect(root: pathlib.Path):
     for item in root.iterdir():
-        yield item if item.is_file() and item.suffix == '.gz' else False
+        if item.is_file() and item.suffix == '.gz':
+            yield item
 
 
 def extract(file: pathlib.Path) -> str:
@@ -22,9 +23,8 @@ def extract(file: pathlib.Path) -> str:
 
 if __name__ == '__main__':
     files = tuple(collect(args.root))
-    # texts = [extract(file) for file in files]
     with open("train.txt", "w", encoding='utf-8') as f:
-        for file in files:
+        for file in tqdm(files):
             text = extract(file)
             f.write(text)
 
