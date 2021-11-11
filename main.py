@@ -22,8 +22,9 @@ def extract(file: pathlib.Path) -> str:
 
 if __name__ == '__main__':
     files = tuple(collect(args.root))
-    texts = [extract(file) for file in files]
+    # texts = [extract(file) for file in files]
     with open("train.txt", "w", encoding='utf-8') as f:
-        for text in tqdm(texts):
+        for file in files:
+            text = extract(file)
             f.write(text)
 
