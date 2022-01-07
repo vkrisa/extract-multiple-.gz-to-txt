@@ -4,7 +4,7 @@ import pathlib
 import gzip
 
 parser = argparse.ArgumentParser(description="Read tar.gz files content and save it to train.txt")
-parser.add_argument('root', type=pathlib.Path, help="webcrawl tar.gz folder path")
+parser.add_argument('root', type=pathlib.Path, help="folder path that contains .gz files")
 
 args = parser.parse_args()
 
